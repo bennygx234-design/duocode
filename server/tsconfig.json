@@ -15,7 +15,7 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "paths": {
-      "duocode-shared": ["../shared/src/index.ts"]
+      "duocode-shared": ["../shared/dist/index.d.ts"]
     }
   },
   "include": ["src/**/*"],
