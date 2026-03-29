@@ -184,6 +184,17 @@ router.post('/message', requireAuth, async (req: Request, res: Response): Promis
       }
     };
 
+    // AI disabled — return a placeholder response
+    if (!process.env.ANTHROPIC_API_KEY) {
+      const words = `AI agent is not configured yet. Add your ANTHROPIC_API_KEY environment variable to enable the Claude-powered coding agent. Your message was: "${message.trim()}"`.split(' ');
+      for (const word of words) {
+        streamCallback({ type: 'token', content: word + ' ' });
+        await new Promise(r => setTimeout(r, 30));
+      }
+      streamCallback({ type: 'done' });
+      return;
+    }
+
     // Run the agent
     await runAgentTurn(
       user.id,
