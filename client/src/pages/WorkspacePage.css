@@ -1,0 +1,52 @@
+/* ── Workspace Page ── */
+.workspace-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: #111119;
+}
+
+.workspace-body {
+  display: grid;
+  grid-template-columns: 240px 1fr 260px;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.workspace-sidebar {
+  overflow: hidden;
+  border-right: 1px solid rgba(255 255 255 / 0.05);
+}
+
+.workspace-sidebar--right {
+  border-right: none;
+  border-left: 1px solid rgba(255 255 255 / 0.05);
+}
+
+.workspace-main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* Responsive collapse at narrow widths */
+@media (max-width: 900px) {
+  .workspace-body {
+    grid-template-columns: 200px 1fr;
+  }
+  .workspace-sidebar--right {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .workspace-body {
+    grid-template-columns: 1fr;
+  }
+  .workspace-sidebar--left {
+    display: none;
+  }
+}

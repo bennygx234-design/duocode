@@ -1,0 +1,330 @@
+/* ── Collaborator Feed ── */
+.cf-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #0f0f17;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255 255 255 / 0.08) transparent;
+  padding-bottom: 1rem;
+}
+
+.cf-root::-webkit-scrollbar { width: 4px; }
+.cf-root::-webkit-scrollbar-thumb { background: rgba(255 255 255 / 0.08); border-radius: 2px; }
+
+.cf-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.85rem 0.5rem;
+  flex-shrink: 0;
+}
+
+.cf-header-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #5a5a72;
+}
+
+.cf-ws-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.cf-ws-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4a4a62;
+  transition: background 0.3s ease;
+}
+
+.cf-ws-dot.connected {
+  background: #4ade80;
+  box-shadow: 0 0 6px rgba(74 222 128 / 0.5);
+  animation: blink-conn 2s ease-in-out infinite;
+}
+
+@keyframes blink-conn {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.cf-ws-text {
+  font-size: 0.68rem;
+  color: #5a5a72;
+}
+
+.cf-loading,
+.cf-error {
+  padding: 0.5rem 0.85rem;
+  font-size: 0.82rem;
+  color: #5a5a72;
+}
+
+.cf-error { color: #f87171; }
+
+/* ── Identity ── */
+.cf-identity {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 0.85rem 0.75rem;
+  border-bottom: 1px solid rgba(255 255 255 / 0.05);
+  margin-bottom: 0.25rem;
+}
+
+.cf-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.cf-avatar-placeholder {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--accent, #7c3aed);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.cf-active-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid #4ade80;
+  animation: ring-pulse 2s ease-in-out infinite;
+}
+
+@keyframes ring-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.08); }
+}
+
+.cf-identity-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.cf-display-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #d0d0e0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cf-role {
+  font-size: 0.73rem;
+  color: #6a6a82;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cf-active-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #4ade80;
+  background: rgba(74 222 128 / 0.1);
+  border: 1px solid rgba(74 222 128 / 0.2);
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cf-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  animation: pulse-dot 1s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+/* ── Branch row ── */
+.cf-branch-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.85rem 0.6rem;
+  color: var(--accent, #7c3aed);
+  font-size: 0.78rem;
+}
+
+.cf-branch {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.78rem;
+}
+
+/* ── Sections ── */
+.cf-section {
+  padding: 0.5rem 0.85rem;
+}
+
+.cf-section + .cf-section {
+  border-top: 1px solid rgba(255 255 255 / 0.04);
+}
+
+.cf-section-title {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #4a4a62;
+  margin-bottom: 0.6rem;
+}
+
+/* ── Commits ── */
+.cf-commits {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.cf-commit {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+}
+
+.cf-commit-sha {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.7rem;
+  color: var(--accent, #7c3aed);
+  background: color-mix(in srgb, var(--accent, #7c3aed) 12%, transparent);
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+  flex-shrink: 0;
+  line-height: 1.6;
+}
+
+.cf-commit-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cf-commit-msg {
+  font-size: 0.82rem;
+  color: #c0c0d0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.cf-commit-files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.cf-commit-file,
+.cf-commit-file-more {
+  font-size: 0.68rem;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  color: #8b8b9e;
+  background: rgba(255 255 255 / 0.05);
+  border-radius: 3px;
+  padding: 0.05rem 0.3rem;
+}
+
+.cf-commit-file-more {
+  color: #5a5a72;
+}
+
+.cf-commit-time {
+  font-size: 0.68rem;
+  color: #4a4a62;
+}
+
+/* ── Modified files ── */
+.cf-files {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.cf-file-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  color: #8b8b9e;
+}
+
+.cf-file-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fbbf24;
+  flex-shrink: 0;
+}
+
+.cf-file-path {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── PRs ── */
+.cf-prs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cf-pr {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  text-decoration: none;
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255 255 255 / 0.05);
+  background: rgba(255 255 255 / 0.02);
+  transition: background 0.12s ease;
+}
+
+.cf-pr:hover {
+  background: rgba(255 255 255 / 0.05);
+}
+
+.cf-pr-number {
+  font-size: 0.72rem;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  color: var(--accent, #7c3aed);
+  flex-shrink: 0;
+}
+
+.cf-pr-title {
+  font-size: 0.8rem;
+  color: #b0b0c8;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,0 +1,13 @@
+{
+  "buildCommand": "npm run build --workspace=shared && npm run build --workspace=client",
+  "outputDirectory": "client/dist",
+  "installCommand": "npm install",
+  "framework": null,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "env": {
+    "VITE_GITHUB_CLIENT_ID": "@github_client_id",
+    "VITE_API_URL": "@api_url"
+  }
+}

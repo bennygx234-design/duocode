@@ -1,0 +1,208 @@
+/* ── Workspace Setup ── */
+.setup-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f0f14 0%, #1a1525 50%, #0f0f14 100%);
+  padding: 2rem 1rem;
+}
+
+.setup-card {
+  width: 100%;
+  max-width: 560px;
+  background: #16161e;
+  border: 1px solid rgba(255 255 255 / 0.08);
+  border-radius: 20px;
+  padding: 2.25rem 2rem 2rem;
+  box-shadow: 0 24px 64px rgba(0 0 0 / 0.5);
+}
+
+.setup-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.setup-logo {
+  flex-shrink: 0;
+  filter: drop-shadow(0 4px 16px color-mix(in srgb, var(--accent, #7c3aed) 50%, transparent));
+}
+
+.setup-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #f0f0f5;
+  margin: 0 0 0.2rem;
+}
+
+.setup-subtitle {
+  font-size: 0.875rem;
+  color: #8b8b9e;
+  margin: 0;
+}
+
+/* Form */
+.setup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.setup-fieldset {
+  border: 1px solid rgba(255 255 255 / 0.07);
+  border-radius: 12px;
+  padding: 1.25rem 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.setup-legend {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent, #7c3aed);
+  padding: 0 0.4rem;
+}
+
+.setup-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.setup-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #c0c0d0;
+}
+
+.setup-required {
+  color: var(--accent, #7c3aed);
+}
+
+.setup-input,
+.setup-textarea,
+.setup-select {
+  background: #0e0e16;
+  border: 1px solid rgba(255 255 255 / 0.1);
+  border-radius: 8px;
+  color: #f0f0f5;
+  font-size: 0.9rem;
+  padding: 0.6rem 0.85rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.setup-input::placeholder,
+.setup-textarea::placeholder {
+  color: #4a4a62;
+}
+
+.setup-input:focus,
+.setup-textarea:focus,
+.setup-select:focus {
+  border-color: var(--accent, #7c3aed);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent, #7c3aed) 20%, transparent);
+}
+
+.setup-textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+.setup-select-wrap {
+  position: relative;
+}
+
+.setup-select {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 2rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238b8b9e' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+}
+
+/* Color picker */
+.setup-color-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.setup-color-swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.12s ease;
+  flex-shrink: 0;
+}
+
+.setup-color-swatch:hover {
+  transform: scale(1.15);
+}
+
+.setup-color-swatch.selected {
+  border-color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 0 0 2px rgba(0 0 0 / 0.5);
+}
+
+.setup-color-custom {
+  position: relative;
+  cursor: pointer;
+}
+
+.custom-swatch {
+  display: block;
+  border: 2px dashed rgba(255 255 255 / 0.3);
+}
+
+/* Error */
+.setup-error {
+  font-size: 0.85rem;
+  color: #f87171;
+  background: rgba(248 113 113 / 0.1);
+  border: 1px solid rgba(248 113 113 / 0.2);
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+  margin: 0;
+}
+
+/* Submit */
+.setup-submit {
+  padding: 0.8rem 1.25rem;
+  background: var(--accent, #7c3aed);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.97rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--accent, #7c3aed) 35%, transparent);
+}
+
+.setup-submit:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--accent, #7c3aed) 85%, white);
+  transform: translateY(-1px);
+}
+
+.setup-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.setup-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
