@@ -16,6 +16,10 @@ function formatRelativeTime(dateStr: string): string {
 }
 
 const WS_URL = (() => {
+  const apiUrl = import.meta.env.VITE_API_URL;
+  if (apiUrl) {
+    return apiUrl.replace(/^http/, 'ws') + '/ws';
+  }
   const proto = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
   return `${proto}//${window.location.host}/ws`;
 })();

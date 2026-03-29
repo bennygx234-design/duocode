@@ -7,7 +7,7 @@ function buildGitHubOAuthURL(): string {
   const params = new URLSearchParams({
     client_id: GITHUB_CLIENT_ID ?? '',
     scope: 'repo,read:user,user:email',
-    redirect_uri: `http://localhost:3001/api/auth/github/callback`,
+    redirect_uri: `${import.meta.env.VITE_API_URL ?? 'http://localhost:3001'}/api/auth/github/callback`,
   });
   return `https://github.com/login/oauth/authorize?${params}`;
 }

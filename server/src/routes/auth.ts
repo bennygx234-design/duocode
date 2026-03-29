@@ -95,7 +95,7 @@ router.get('/github/callback', async (req: Request, res: Response): Promise<void
     const user = upsertUser({ github_id: data.id, login: data.login, name: data.name, avatar_url: data.avatar_url, access_token: accessToken });
     req.session.userId = user.id;
     // Redirect back to the SPA
-    res.redirect('http://localhost:5173');
+    res.redirect(process.env.CLIENT_ORIGIN ?? 'http://localhost:5173');
   } catch (err) {
     console.error('[Auth] GitHub profile fetch error:', err);
     res.status(502).send('Failed to fetch GitHub user profile');
