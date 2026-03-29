@@ -1,7 +1,7 @@
 import React from 'react';
 import './Login.css';
 
-const GITHUB_CLIENT_ID = import.meta.env.VITE_GITHUB_CLIENT_ID as string;
+const GITHUB_CLIENT_ID = (import.meta.env.VITE_GITHUB_CLIENT_ID as string)?.trim();
 
 function buildGitHubOAuthURL(): string {
   const params = new URLSearchParams({
